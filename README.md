@@ -1,16 +1,90 @@
-# widgets_exte
+# widgets_extension
+<a href="https://pub.dev/packages/widgets_extension">
+  <img src="https://img.shields.io/pub/v/v.svg"/>
+</a>
+<a href="https://flutter.dev/">
+  <img src="https://img.shields.io/badge/flutter-%3E%3D%203.0.0-green.svg"/>
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+</a>
 
-A Widgets extension Flutter project.
+A Widgets extension Flutter project that helps you write cleaner, more readable Flutter code with less nesting using extension methods.
 
 ## Getting Started
+```yaml
+   dependencies:
+     widgets_extension: ^1.0.0
 
-This project is a starting point for a Flutter application.
+import "package:widgets_extension/widgets_extension.dart";
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+before
+```dart
+    GestureDetector(
+      onTap: () {
+        print('tap');
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.dp, vertical: 5.dp),
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Text(
+              'text',
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: selectIndexGroup,
+                builder: (context, value, child) {
+                  return  Container(
+                    alignment: Alignment.center,
+                    child: Text('${value}'),
+                  );
+                }
+              ),
+            ),
+            type != null
+                ? SizedBox(
+              width: 100,
+              height: 100,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text('type'),
+              ),
+            )
+                : const SizedBox.shrink()
+          ],
+        ),
+      ),
+    );
+```
+after
+```dart
+Container(
+  child: Column(
+    children: [
+      Text('text').fontSize(14).color(Colors.white).bold(),
+      selectIndexGroup.builder((value, child) {
+         return Text('${value}').align(Alignment.center);
+      }).expanded(),
+      Text('type')
+        .width(100).height(100)
+        .showIf(type != null)
+    ],
+  ),
+).backgroundColor(Colors.blue)
+    .padding({ all: 10, vertical: 5 })
+    .radius(10)
+    .onTap(() {
+      print('tap');
+    });
+```
