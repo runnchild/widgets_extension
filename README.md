@@ -1,6 +1,6 @@
 # widgets_extension
 <a href="https://pub.dev/packages/widgets_extension">
-  <img src="https://img.shields.io/pub/v/v.svg"/>
+  <img src="https://img.shields.io/pub/v/widgets_extension.svg"/>
 </a>
 <a href="https://flutter.dev/">
   <img src="https://img.shields.io/badge/flutter-%3E%3D%203.0.0-green.svg"/>
@@ -11,10 +11,13 @@
 
 A Widgets extension Flutter project that helps you write cleaner, more readable Flutter code with less nesting using extension methods.
 
+- 告别层层嵌套：大幅减少代码的缩进层级。
+- 代码更简洁：代码更加紧凑、易于理解。
+- 专注于业务：专注于核心业务逻辑的实现。
 ## Getting Started
 ```yaml
    dependencies:
-     widgets_extension: ^1.0.0
+     widgets_extension: ^1.0.1
 
 import "package:widgets_extension/widgets_extension.dart";
 ```

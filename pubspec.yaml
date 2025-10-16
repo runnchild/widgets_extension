@@ -1,5 +1,5 @@
 name: widgets_extension
-description: "A Widgets extension Flutter project."
+description: "Helps you write cleaner, more readable Flutter code with less nesting using extension methods."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 
@@ -15,7 +15,7 @@ description: "A Widgets extension Flutter project."
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/runnchild/widgets_extension.git
 
 environment:
