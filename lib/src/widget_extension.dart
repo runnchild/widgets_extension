@@ -153,6 +153,20 @@ extension WidgetExtension on Widget {
       child: this,
     );
   }
+
+  Widget rotate(double angle) {
+    return Transform.rotate(
+      angle: angle,
+      child: this,
+    );
+  }
+
+  Widget translate({double? dx, double? dy}) {
+    return Transform.translate(
+      offset: Offset(dx ?? 0, dy ?? 0),
+      child: this,
+    );
+  }
 }
 
 extension NotifierExt<T> on ValueNotifier<T> {

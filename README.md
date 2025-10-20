@@ -17,7 +17,7 @@ A Widgets extension Flutter project that helps you write cleaner, more readable 
 ## Getting Started
 ```yaml
    dependencies:
-     widgets_extension: ^1.0.1
+     widgets_extension: ^1.0.2
 
 import "package:widgets_extension/widgets_extension.dart";
 ```
@@ -91,3 +91,4 @@ Container(
       print('tap');
     });
 ```
+需要注意调用顺序，先调用的先添加到组件树中
