@@ -1,12 +1,62 @@
+import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:flutter/material.dart';
+import 'package:widgets_extension/src/widget/decoration_wrap.dart';
 
 extension WidgetExtension on Widget {
-  Widget onTap(VoidCallback? onTap, {
+  Widget onTap(
+    VoidCallback? onTap, {
     HitTestBehavior behavior = HitTestBehavior.translucent,
   }) {
+    dynamic onDoubleTap;
+    dynamic onLongPress;
+    if (this is GestureDetector) {
+      onDoubleTap = this.onDoubleTap;
+      onLongPress = this.onLongPress;
+    }
     return GestureDetector(
       behavior: behavior,
       onTap: onTap,
+      onDoubleTap: onDoubleTap,
+      onLongPress: onLongPress,
+      child: this,
+    );
+  }
+
+  Widget onDoubleTap(
+    VoidCallback? onDoubleTap, {
+    HitTestBehavior behavior = HitTestBehavior.translucent,
+  }) {
+    dynamic onTap;
+    dynamic onLongPress;
+    if (this is GestureDetector) {
+      onTap = this.onTap;
+      onLongPress = this.onLongPress;
+    }
+    return GestureDetector(
+      behavior: behavior,
+      onTap: onTap,
+      onLongPress: onLongPress,
+      onDoubleTap: onDoubleTap,
+      child: this,
+    );
+  }
+
+  Widget onLongPress(
+    VoidCallback? onLongPress, {
+    HitTestBehavior behavior = HitTestBehavior.translucent,
+  }) {
+    dynamic onTap;
+    dynamic onDoubleTap;
+    if (this is GestureDetector) {
+      onTap = this.onTap;
+      onDoubleTap = this.onDoubleTap;
+    }
+
+    return GestureDetector(
+      behavior: behavior,
+      onTap: onTap,
+      onDoubleTap: onDoubleTap,
+      onLongPress: onLongPress,
       child: this,
     );
   }
@@ -43,13 +93,14 @@ extension WidgetExtension on Widget {
     );
   }
 
-  Widget padding({double all = 0,
-    double? horizontal,
-    double? vertical,
-    double? left,
-    double? top,
-    double? right,
-    double? bottom}) {
+  Widget padding(
+      {double all = 0,
+      double? horizontal,
+      double? vertical,
+      double? left,
+      double? top,
+      double? right,
+      double? bottom}) {
     return Padding(
       padding: EdgeInsets.all(all).copyWith(
         left: horizontal ?? left,
@@ -68,12 +119,13 @@ extension WidgetExtension on Widget {
     );
   }
 
-  Widget positioned({double? left,
-    double? top,
-    double? right,
-    double? bottom,
-    double? width,
-    double? height}) {
+  Widget positioned(
+      {double? left,
+      double? top,
+      double? right,
+      double? bottom,
+      double? width,
+      double? height}) {
     return Positioned(
       left: left,
       top: top,
@@ -88,6 +140,23 @@ extension WidgetExtension on Widget {
   Widget align([AlignmentGeometry? alignment]) {
     return Align(
       alignment: alignment ?? Alignment.center,
+      child: this,
+    );
+  }
+
+  Widget constraint({
+    double? maxWidth,
+    double? maxHeight,
+    double? minWidth,
+    double? minHeight,
+  }) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: maxWidth ?? double.infinity,
+        maxHeight: maxHeight ?? double.infinity,
+        minWidth: minWidth ?? 0,
+        minHeight: minHeight ?? 0,
+      ),
       child: this,
     );
   }
@@ -108,9 +177,9 @@ extension WidgetExtension on Widget {
 
   Widget radius(double radius,
       {double? topLeft,
-        double? topRight,
-        double? bottomLeft,
-        double? bottomRight}) {
+      double? topRight,
+      double? bottomLeft,
+      double? bottomRight}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius).copyWith(
         topLeft: Radius.circular(topLeft ?? radius),
@@ -123,40 +192,17 @@ extension WidgetExtension on Widget {
   }
 
   Widget backgroundColor(Color color) {
-    return ColoredBox(
-      color: color,
-      child: this,
-    );
+    return ColoredBox(color: color, child: this);
   }
 
-  Widget decoration({
-    Color? color,
-    BorderRadius? borderRadius,
-    BoxBorder? border,
-    List<BoxShadow>? shadow,
-    Gradient? gradient,
-    DecorationImage? image,
-    BoxShape? shape,
-    BlendMode? backgroundBlendMode,
-  }) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: borderRadius,
-        border: border,
-        boxShadow: shadow,
-        gradient: gradient,
-        image: image,
-        backgroundBlendMode: backgroundBlendMode,
-        shape: shape ?? BoxShape.rectangle,
-      ),
-      child: this,
-    );
+  DecorationWrap decoration() {
+    return DecorationWrap(decoration: BoxDecoration(), child: this);
   }
 
-  Widget rotate(double angle) {
+  Widget rotate(double angle, {AlignmentGeometry? alignment}) {
     return Transform.rotate(
       angle: angle,
+      alignment: alignment ?? Alignment.center,
       child: this,
     );
   }
@@ -167,10 +213,74 @@ extension WidgetExtension on Widget {
       child: this,
     );
   }
+
+  Widget scale(double scale, {AlignmentGeometry? alignment}) {
+    return Transform.scale(
+      scale: scale,
+      alignment: alignment ?? Alignment.center,
+      child: this,
+    );
+  }
+
+  Widget scaleX(double scaleX, {AlignmentGeometry? alignment}) {
+    return Transform.scale(
+      scaleX: scaleX,
+      alignment: alignment ?? Alignment.center,
+      child: this,
+    );
+  }
+
+  Widget scaleY(double scaleY, {AlignmentGeometry? alignment}) {
+    return Transform.scale(
+      scaleY: scaleY,
+      alignment: alignment ?? Alignment.center,
+      child: this,
+    );
+  }
+
+  Widget transform(Matrix4 transform,
+      {AlignmentGeometry? alignment, Offset? origin}) {
+    return Transform(
+      transform: transform,
+      alignment: alignment,
+      origin: origin,
+      child: this,
+    );
+  }
+
+  Widget scrollable({
+    Axis scrollDirection = Axis.vertical,
+    bool reverse = false,
+    bool? primary,
+    ScrollPhysics? physics,
+    ScrollController? controller,
+    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return SingleChildScrollView(
+      scrollDirection: scrollDirection,
+      reverse: reverse,
+      primary: primary,
+      physics: physics,
+      controller: controller,
+      dragStartBehavior: dragStartBehavior,
+      padding: padding,
+      child: this,
+    );
+  }
+
+  Widget center({double? widthFactor, double? heightFactor}) {
+    return Center(
+      widthFactor: widthFactor,
+      heightFactor: heightFactor,
+      child: this,
+    );
+  }
 }
 
 extension NotifierExt<T> on ValueNotifier<T> {
-  Widget builder(Widget Function(T value, Widget? child) builder, {Widget? child}) {
+  Widget builder(Widget Function(T value, Widget? child) builder,
+      {Widget? child}) {
     return ValueListenableBuilder<T>(
       valueListenable: this,
       builder: (context, value, child) {

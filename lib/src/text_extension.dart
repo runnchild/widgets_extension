@@ -19,22 +19,35 @@ extension TextStyleExtension on TextStyle {
 }
 
 extension TextExtension on Text {
-  Text _copyWith({TextStyle? style, int? maxLines}) {
+  Text _copyWith({
+    TextStyle? style,
+    TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
+    StrutStyle? strutStyle,
+    TextScaler? textScaler,
+    String? semanticsLabel,
+    bool? softWrap,
+    TextWidthBasis? textWidthBasis,
+    TextHeightBehavior? textHeightBehavior,
+    Locale? locale,
+    TextDirection? textDirection,
+  }) {
     return Text(
       data ?? '',
       key: key,
       style: style ?? this.style,
-      strutStyle: strutStyle,
-      textAlign: textAlign,
-      textDirection: textDirection,
-      locale: locale,
-      softWrap: softWrap,
-      overflow: overflow,
-      textScaler: textScaler,
-      maxLines: maxLines,
-      semanticsLabel: semanticsLabel,
-      textWidthBasis: textWidthBasis,
-      textHeightBehavior: textHeightBehavior,
+      strutStyle: strutStyle ?? this.strutStyle,
+      textAlign: textAlign ?? this.textAlign,
+      textDirection: textDirection ?? this.textDirection,
+      locale: locale ?? this.locale,
+      softWrap: softWrap ?? this.softWrap,
+      overflow: overflow ?? this.overflow,
+      textScaler: textScaler ?? this.textScaler,
+      maxLines: maxLines ?? this.maxLines,
+      semanticsLabel: semanticsLabel ?? this.semanticsLabel,
+      textWidthBasis: textWidthBasis ?? this.textWidthBasis,
+      textHeightBehavior: textHeightBehavior ?? this.textHeightBehavior,
     );
   }
 
@@ -42,6 +55,14 @@ extension TextExtension on Text {
 
   Text fontSize(double size) {
     return _copyWith(style: _style.setFontSize(size));
+  }
+
+  Text fontColor(Color? color) {
+    return _copyWith(style: _style.setColor(color));
+  }
+
+  Text fontWeight(FontWeight? fontWeight) {
+    return _copyWith(style: _style.copyWith(fontWeight: fontWeight));
   }
 
   Text bold() {
@@ -68,15 +89,51 @@ extension TextExtension on Text {
     return _copyWith(style: _style.lineThrough);
   }
 
-  Text color(Color? color) {
-    return _copyWith(style: _style.setColor(color));
-  }
-
   Text ellipsis() {
     return _copyWith(style: _style.copyWith(overflow: TextOverflow.ellipsis));
   }
 
   Text maxLines(int maxLines) {
     return _copyWith(maxLines: maxLines);
+  }
+
+  Text textAlign(TextAlign? textAlign) {
+    return _copyWith(textAlign: textAlign);
+  }
+
+  Text textDirection(TextDirection? textDirection) {
+    return _copyWith(textDirection: textDirection);
+  }
+
+  Text locale(Locale? locale) {
+    return _copyWith(locale: locale);
+  }
+
+  Text softWrap(bool? softWrap) {
+    return _copyWith(softWrap: softWrap);
+  }
+
+  Text overflow(TextOverflow? overflow) {
+    return _copyWith(overflow: overflow);
+  }
+
+  Text textScaler(TextScaler? textScaler) {
+    return _copyWith(textScaler: textScaler);
+  }
+
+  Text semanticsLabel(String? semanticsLabel) {
+    return _copyWith(semanticsLabel: semanticsLabel);
+  }
+
+  Text textWidthBasis(TextWidthBasis? textWidthBasis) {
+    return _copyWith(textWidthBasis: textWidthBasis);
+  }
+
+  Text textHeightBehavior(TextHeightBehavior? textHeightBehavior) {
+    return _copyWith(textHeightBehavior: textHeightBehavior);
+  }
+
+  Text strutStyle(StrutStyle? strutStyle) {
+    return _copyWith(strutStyle: strutStyle);
   }
 }
