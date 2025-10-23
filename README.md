@@ -15,11 +15,10 @@ A Widgets extension Flutter project that helps you write cleaner, more readable 
 - 代码更简洁：代码更加紧凑、易于理解。
 - 专注于业务：专注于核心业务逻辑的实现。
 ## Getting Started
-The latest version is
-
-<a href="https://pub.dev/packages/widgets_extension">
+The latest version is <a href="https://pub.dev/packages/widgets_extension">
     <img src="https://img.shields.io/pub/v/widgets_extension.svg"/>
 </a>
+
 ```yaml
    dependencies:
      widgets_extension: @latest
