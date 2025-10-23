@@ -1,4 +1,4 @@
-### 1.0.4
+### 1.0.5
 * 新增decorated扩展方法
 * 修复decoration, gesture失效问题
 * 更改Text组件部分扩展方法避免和自身属性冲突
