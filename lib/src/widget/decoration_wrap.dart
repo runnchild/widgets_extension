@@ -1,56 +1,53 @@
 import 'package:flutter/material.dart';
 
 class DecorationWrap {
-  final BoxDecoration _decoration;
   final Widget _child;
+  BoxDecoration _decoration = BoxDecoration();
 
-  const DecorationWrap(
-      {required BoxDecoration decoration, required Widget child})
-      : _child = child,
-        _decoration = decoration;
+  DecorationWrap({required Widget child}) : _child = child;
 
   DecorationWrap border(Border border) {
-    _decoration.copyWith(border: border);
+    _decoration = _decoration.copyWith(border: border);
     return this;
   }
 
   DecorationWrap borderRadius(BorderRadius borderRadius) {
-    _decoration.copyWith(borderRadius: borderRadius);
+    _decoration = _decoration.copyWith(borderRadius: borderRadius);
     return this;
   }
 
   DecorationWrap color(Color color) {
-    _decoration.copyWith(color: color);
+    _decoration = _decoration.copyWith(color: color);
     return this;
   }
 
   DecorationWrap image(DecorationImage image) {
-    _decoration.copyWith(image: image);
+    _decoration = _decoration.copyWith(image: image);
     return this;
   }
 
   DecorationWrap shape(BoxShape shape) {
-    _decoration.copyWith(shape: shape);
+    _decoration = _decoration.copyWith(shape: shape);
     return this;
   }
 
   DecorationWrap backgroundBlendMode(BlendMode backgroundBlendMode) {
-    _decoration.copyWith(backgroundBlendMode: backgroundBlendMode);
+    _decoration = _decoration.copyWith(backgroundBlendMode: backgroundBlendMode);
     return this;
   }
 
   DecorationWrap shadows(List<BoxShadow> shadows) {
-    _decoration.copyWith(boxShadow: shadows);
+    _decoration = _decoration.copyWith(boxShadow: shadows);
     return this;
   }
 
   DecorationWrap gradient(Gradient gradient) {
-    _decoration.copyWith(gradient: gradient);
+    _decoration = _decoration.copyWith(gradient: gradient);
     return this;
   }
 
   DecorationWrap boxShadow(BoxShadow boxShadow) {
-    _decoration.copyWith(boxShadow: [boxShadow]);
+    _decoration = _decoration.copyWith(boxShadow: [boxShadow]);
     return this;
   }
 

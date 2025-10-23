@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart' show DragStartBehavior;
+import 'package:flutter/gestures.dart' show DragStartBehavior, GestureDoubleTapCallback;
 import 'package:flutter/material.dart';
 import 'package:widgets_extension/src/widget/decoration_wrap.dart';
 
@@ -7,18 +7,21 @@ extension WidgetExtension on Widget {
     VoidCallback? onTap, {
     HitTestBehavior behavior = HitTestBehavior.translucent,
   }) {
-    dynamic onDoubleTap;
-    dynamic onLongPress;
+    GestureDoubleTapCallback? onDoubleTap;
+    GestureLongPressCallback? onLongPress;
+    Widget? child;
     if (this is GestureDetector) {
-      onDoubleTap = this.onDoubleTap;
-      onLongPress = this.onLongPress;
+      var detector = (this as GestureDetector);
+      onDoubleTap = detector.onDoubleTap;
+      onLongPress = detector.onLongPress;
+      child = detector.child;
     }
     return GestureDetector(
       behavior: behavior,
       onTap: onTap,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
-      child: this,
+      child: child?? this,
     );
   }
 
@@ -26,18 +29,21 @@ extension WidgetExtension on Widget {
     VoidCallback? onDoubleTap, {
     HitTestBehavior behavior = HitTestBehavior.translucent,
   }) {
-    dynamic onTap;
-    dynamic onLongPress;
+    GestureTapCallback? onTap;
+    GestureLongPressCallback? onLongPress;
+    Widget? child;
     if (this is GestureDetector) {
-      onTap = this.onTap;
-      onLongPress = this.onLongPress;
+      var detector = (this as GestureDetector);
+      onTap = detector.onTap;
+      onLongPress = detector.onLongPress;
+      child = detector.child;
     }
     return GestureDetector(
       behavior: behavior,
       onTap: onTap,
       onLongPress: onLongPress,
       onDoubleTap: onDoubleTap,
-      child: this,
+      child: child?? this,
     );
   }
 
@@ -45,11 +51,15 @@ extension WidgetExtension on Widget {
     VoidCallback? onLongPress, {
     HitTestBehavior behavior = HitTestBehavior.translucent,
   }) {
-    dynamic onTap;
-    dynamic onDoubleTap;
+    GestureTapCallback? onTap;
+    GestureDoubleTapCallback? onDoubleTap;
+
+    Widget? child;
     if (this is GestureDetector) {
-      onTap = this.onTap;
-      onDoubleTap = this.onDoubleTap;
+      var detector = (this as GestureDetector);
+      onTap = detector.onTap;
+      onDoubleTap = detector.onDoubleTap;
+      child = detector.child;
     }
 
     return GestureDetector(
@@ -57,7 +67,7 @@ extension WidgetExtension on Widget {
       onTap: onTap,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
-      child: this,
+      child: child?? this,
     );
   }
 
@@ -69,7 +79,7 @@ extension WidgetExtension on Widget {
     );
   }
 
-  SizedBox width(double width) {
+  Widget width(double width) {
     double? height;
     if (this is SizedBox) {
       height = (this as SizedBox).height;
@@ -81,7 +91,7 @@ extension WidgetExtension on Widget {
     );
   }
 
-  SizedBox height(double height) {
+  Widget height(double height) {
     double? width;
     if (this is SizedBox) {
       width = (this as SizedBox).width;
@@ -196,7 +206,11 @@ extension WidgetExtension on Widget {
   }
 
   DecorationWrap decoration() {
-    return DecorationWrap(decoration: BoxDecoration(), child: this);
+    return DecorationWrap(child: this);
+  }
+
+  Widget decorated(Decoration decoration) {
+    return DecoratedBox(decoration: decoration, child: this);
   }
 
   Widget rotate(double angle, {AlignmentGeometry? alignment}) {
@@ -207,9 +221,9 @@ extension WidgetExtension on Widget {
     );
   }
 
-  Widget translate({double? dx, double? dy}) {
+  Widget translate({double? x, double? y}) {
     return Transform.translate(
-      offset: Offset(dx ?? 0, dy ?? 0),
+      offset: Offset(x ?? 0, y ?? 0),
       child: this,
     );
   }

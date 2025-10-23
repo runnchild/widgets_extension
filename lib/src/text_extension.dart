@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_extension/widgets_extension.dart';
 
 extension TextStyleExtension on TextStyle {
   TextStyle get bold => copyWith(fontWeight: FontWeight.bold);
@@ -19,7 +20,7 @@ extension TextStyleExtension on TextStyle {
 }
 
 extension TextExtension on Text {
-  Text _copyWith({
+  Text     _copyWith({
     TextStyle? style,
     TextAlign? textAlign,
     int? maxLines,
@@ -93,47 +94,47 @@ extension TextExtension on Text {
     return _copyWith(style: _style.copyWith(overflow: TextOverflow.ellipsis));
   }
 
-  Text maxLines(int maxLines) {
+  Text maxLines_(int maxLines) {
     return _copyWith(maxLines: maxLines);
   }
 
-  Text textAlign(TextAlign? textAlign) {
+  Text textAlign_(TextAlign? textAlign) {
     return _copyWith(textAlign: textAlign);
   }
 
-  Text textDirection(TextDirection? textDirection) {
+  Text textDirection_(TextDirection? textDirection) {
     return _copyWith(textDirection: textDirection);
   }
 
-  Text locale(Locale? locale) {
+  Text locale_(Locale? locale) {
     return _copyWith(locale: locale);
   }
 
-  Text softWrap(bool? softWrap) {
+  Text softWrap_(bool? softWrap) {
     return _copyWith(softWrap: softWrap);
   }
 
-  Text overflow(TextOverflow? overflow) {
+  Text overflow_(TextOverflow? overflow) {
     return _copyWith(overflow: overflow);
   }
 
-  Text textScaler(TextScaler? textScaler) {
+  Text textScaler_(TextScaler? textScaler) {
     return _copyWith(textScaler: textScaler);
   }
 
-  Text semanticsLabel(String? semanticsLabel) {
+  Text semanticsLabel_(String? semanticsLabel) {
     return _copyWith(semanticsLabel: semanticsLabel);
   }
 
-  Text textWidthBasis(TextWidthBasis? textWidthBasis) {
+  Text textWidthBasis_(TextWidthBasis? textWidthBasis) {
     return _copyWith(textWidthBasis: textWidthBasis);
   }
 
-  Text textHeightBehavior(TextHeightBehavior? textHeightBehavior) {
+  Text textHeightBehavior_(TextHeightBehavior? textHeightBehavior) {
     return _copyWith(textHeightBehavior: textHeightBehavior);
   }
 
-  Text strutStyle(StrutStyle? strutStyle) {
+  Text strutStyle_(StrutStyle? strutStyle) {
     return _copyWith(strutStyle: strutStyle);
   }
 }

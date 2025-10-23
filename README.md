@@ -15,11 +15,16 @@ A Widgets extension Flutter project that helps you write cleaner, more readable 
 - 代码更简洁：代码更加紧凑、易于理解。
 - 专注于业务：专注于核心业务逻辑的实现。
 ## Getting Started
+The latest version is
+
+<a href="https://pub.dev/packages/widgets_extension">
+    <img src="https://img.shields.io/pub/v/widgets_extension.svg"/>
+</a>
 ```yaml
    dependencies:
-     widgets_extension: ^1.0.3
+     widgets_extension: @latest
 
-import "package:widgets_extension/widgets_extension.dart";
+   import "package:widgets_extension/widgets_extension.dart";
 ```
 
 #### Widget before
@@ -110,8 +115,8 @@ import "package:widgets_extension/widgets_extension.dart";
               .fontSize(16)
               .fontColor(Colors.white)
               .w600()
-              .maxLines(1)
-              .overflow(TextOverflow.ellipsis);
+              .maxLines_(1)
+              .overflow_(TextOverflow.ellipsis);
 ```
 ---
 #### Decoration before
@@ -143,9 +148,35 @@ import "package:widgets_extension/widgets_extension.dart";
                   Border.all(color: const Color(0xffA5712A),width: 1.dp),
                  )
                 .build(),
-```
-需要注意调用顺序，先调用的先添加到组件树中
 
+              ---or---
+
+              Text("decorated")
+                .fontSize(14)
+                .fontColor(const Color(0xffA5712A))
+                .padding(horizontal: 6.dp, vertical: 3.dp)
+                .decorated(BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.dp),
+                  color: const Color(0xffFBF5EC),
+                  border: Border.all(
+                    color: const Color(0xffA5712A),width: 1.dp),
+                  ),
+                )
+```
+需要注意调用顺序，先调用的先添加到组件树中,比如：
+```dart
+// 无效
+widget
+    .width(100)
+    .height(100)
+    .center()
+
+// 有效
+widget
+    .center()
+    .width(100)
+    .height(100)
+```
 ## 支持的组件扩展方法：
 ### 通用组件扩展
 - showIf: 根据条件显示组件
@@ -157,6 +188,7 @@ import "package:widgets_extension/widgets_extension.dart";
 - height: 设置高度
 - constraint: 设置约束
 - decoration: 设置装饰
+- decorated: 设置装饰
 - backgroundColor: 设置背景颜色
 - radius: 设置圆角
 - scrollable: 设置可滚动
