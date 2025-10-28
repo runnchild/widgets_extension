@@ -78,13 +78,13 @@ The latest version is <a href="https://pub.dev/packages/widgets_extension">
 ```dart
   Column(
     children: [
-      Text('text').fontSize(14).color(Colors.white).bold(),
+      Text('text').fontSize(14).fontColor(Colors.white).bold(),
       selectIndexGroup.builder((value, child) {
          return Text('${value}').align(Alignment.center);
       }).expanded(),
       Text('type')
         .width(100).height(100)
-        .showIf(type != null)
+        .showIf(type != null),
     ],
   ).backgroundColor(Colors.blue)
     .padding(all: 10, vertical: 5)
@@ -202,6 +202,14 @@ widget
 - scaleX: 水平缩放组件
 - scaleY: 垂直缩放组件
 - transform: 对组件进行变换
+- opacity: 设置透明度
+- aspectRatio: 设置宽高比
+- ignore: 忽略指针事件
+- absorb: 阻止指针事件
+- intrinsicWidth: 设置组件宽度为内容宽度
+- intrinsicHeight: 设置组件高度为内容高度
+- backdropBlur: 添加背景模糊效果
+- blur: 添加模糊效果
 
 ### Text组件扩展
 - fontSize: 设置字体大小
@@ -209,6 +217,7 @@ widget
 - bold: 设置字体为粗体
 - w500: 设置字体权重为500
 - w600: 设置字体权重为600
+- fontWeight: 设置字体权重
 - italic: 设置字体为斜体
 - underline: 为文字添加下划线
 - lineThrough: 为文字添加删除线

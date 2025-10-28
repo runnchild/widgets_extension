@@ -1,4 +1,7 @@
-import 'package:flutter/gestures.dart' show DragStartBehavior, GestureDoubleTapCallback;
+import 'dart:ui' show ImageFilter;
+
+import 'package:flutter/gestures.dart'
+    show DragStartBehavior, GestureDoubleTapCallback;
 import 'package:flutter/material.dart';
 import 'package:widgets_extension/src/widget/decoration_wrap.dart';
 
@@ -21,7 +24,7 @@ extension WidgetExtension on Widget {
       onTap: onTap,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
-      child: child?? this,
+      child: child ?? this,
     );
   }
 
@@ -43,7 +46,7 @@ extension WidgetExtension on Widget {
       onTap: onTap,
       onLongPress: onLongPress,
       onDoubleTap: onDoubleTap,
-      child: child?? this,
+      child: child ?? this,
     );
   }
 
@@ -67,7 +70,7 @@ extension WidgetExtension on Widget {
       onTap: onTap,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
-      child: child?? this,
+      child: child ?? this,
     );
   }
 
@@ -181,8 +184,8 @@ extension WidgetExtension on Widget {
     );
   }
 
-  Widget showIf(bool condition) {
-    return condition ? this : const SizedBox.shrink();
+  Widget showIf(bool condition, {Widget Function()? orElse}) {
+    return condition ? this : orElse?.call() ?? const SizedBox.shrink();
   }
 
   Widget radius(double radius,
@@ -287,6 +290,77 @@ extension WidgetExtension on Widget {
     return Center(
       widthFactor: widthFactor,
       heightFactor: heightFactor,
+      child: this,
+    );
+  }
+
+  Widget opacity(double opacity, {Key? key}) {
+    return Opacity(
+      key: key,
+      opacity: opacity,
+      child: this,
+    );
+  }
+
+  Widget aspectRatio(double ratio, {Key? key}) {
+    return AspectRatio(
+      key: key,
+      aspectRatio: ratio,
+      child: this,
+    );
+  }
+
+  Widget ignore({Key? key, bool ignore = true}) {
+    return IgnorePointer(
+      key: key,
+      ignoring: ignore,
+      child: this,
+    );
+  }
+
+  Widget absorb({Key? key, bool absorbing = true}) {
+    return AbsorbPointer(
+      key: key,
+      absorbing: absorbing,
+      child: this,
+    );
+  }
+
+  Widget intrinsicWidth({Key? key, double? stepWidth, double? stepHeight}) {
+    return IntrinsicWidth(
+      key: key,
+      stepWidth: stepWidth,
+      stepHeight: stepHeight,
+      child: this,
+    );
+  }
+
+  Widget intrinsicHeight({Key? key}) {
+    return IntrinsicHeight(key: key, child: this);
+  }
+
+  Widget backdropBlur(double sigma,
+      {Key? key, double? sigmaX, double? sigmaY, TileMode? tileMode}) {
+    return BackdropFilter(
+      key: key,
+      filter: ImageFilter.blur(
+        sigmaX: sigmaX ?? sigma,
+        sigmaY: sigmaY ?? sigma,
+        tileMode: tileMode,
+      ),
+      child: this,
+    );
+  }
+
+  Widget blur(double sigma,
+      {Key? key, double? sigmaX, double? sigmaY, TileMode? tileMode}) {
+    return ImageFiltered(
+      key: key,
+      imageFilter: ImageFilter.blur(
+        sigmaX: sigmaX ?? sigma,
+        sigmaY: sigmaY ?? sigma,
+        tileMode: tileMode,
+      ),
       child: this,
     );
   }

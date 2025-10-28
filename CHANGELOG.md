@@ -1,3 +1,13 @@
+### 1.0.6
+* showIf增加orElse参数以支持条件不满足时显示备用组件
+* 新增：
+- ignore: 忽略指针事件
+- absorb: 阻止指针事件
+- intrinsicWidth: 设置组件宽度为内容宽度
+- intrinsicHeight: 设置组件高度为内容高度
+- backdropBlur: 添加背景模糊效果
+- blur: 添加模糊效果
+
 ### 1.0.5
 * 新增decorated扩展方法
 * 修复decoration, gesture失效问题

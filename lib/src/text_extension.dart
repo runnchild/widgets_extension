@@ -20,7 +20,7 @@ extension TextStyleExtension on TextStyle {
 }
 
 extension TextExtension on Text {
-  Text     _copyWith({
+  Text _copyWith({
     TextStyle? style,
     TextAlign? textAlign,
     int? maxLines,
