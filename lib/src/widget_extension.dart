@@ -188,6 +188,16 @@ extension WidgetExtension on Widget {
     return condition ? this : orElse?.call() ?? const SizedBox.shrink();
   }
 
+  Widget showWhen(ValueNotifier<bool> valueListenable,
+      {Widget Function()? orElse}) {
+    return ValueListenableBuilder(
+      valueListenable: valueListenable,
+      builder: (context, visible, child) {
+        return showIf(visible, orElse: orElse);
+      },
+    );
+  }
+
   Widget radius(double radius,
       {double? topLeft,
       double? topRight,

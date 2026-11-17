@@ -32,7 +32,8 @@ class DecorationWrap {
   }
 
   DecorationWrap backgroundBlendMode(BlendMode backgroundBlendMode) {
-    _decoration = _decoration.copyWith(backgroundBlendMode: backgroundBlendMode);
+    _decoration =
+        _decoration.copyWith(backgroundBlendMode: backgroundBlendMode);
     return this;
   }
 
